@@ -1,0 +1,30 @@
+
+<form #f="ngForm" (ngSubmit)="add(f)">
+    <table>
+    <tr>
+        <td>Name:</td>
+        <td><input type="text" name="name" ngModel #name="ngModel" required></td>
+        <div *ngIf="name.invalid && (name.dirty || name.touched)">
+            Name is required ! 
+        </div>
+    </tr>
+    <tr>
+        <td>Price:</td>
+        <td><input type="text" name="price" ngModel #price="ngModel" pattern="[0-9]+"></td>
+        <div *ngIf="price.invalid && (price.dirty || price.touched)">
+            Price accept only numbers !
+        </div>
+    </tr>
+    <tr>
+        <td>Description:</td>
+        <td><input type="text" name="description" ngModel #desc="ngModel" minlength="10"></td>
+    <div *ngIf="desc.invalid && (desc.dirty || desc.touched)">
+        Description must be at least 10 characters !
+    </div>
+    </tr>
+    <tr>
+        <td></td>
+        <td><input type="submit" value="AddProduct" [disabled]="f.invalid"></td>
+    </tr>
+    </table>
+</form>
